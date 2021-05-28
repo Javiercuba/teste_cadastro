@@ -27,6 +27,7 @@ public class UserDAO implements IUserDAO {
         ContentValues cv = new ContentValues();
         cv.put("nome", user.getName() );
         cv.put("date",user.getDataNasc() );
+        cv.put("code", user.getCode());
         try {
             write.insert(DbHelper.TABLE_USERS, null, cv );
             Log.i("INFO", "Usuario salvo com sucesso!");
@@ -44,6 +45,7 @@ public class UserDAO implements IUserDAO {
         ContentValues cv = new ContentValues();
         cv.put("nome", user.getName() );
         cv.put("date", user.getDataNasc() );
+        cv.put("code", user.getCode());
         try {
             String[] args = {user.getId().toString()};
             write.update(DbHelper.TABLE_USERS, cv, "id=?", args );
@@ -86,11 +88,15 @@ public class UserDAO implements IUserDAO {
             Long id = c.getLong(c.getColumnIndex("id"));
             String name = c.getString(c.getColumnIndex("nome"));
             String userDate = c.getString(c.getColumnIndex("date"));
+            String code = c.getString(c.getColumnIndex("code"));
 
             user.setId(id);
             user.setName(name);
             user.setDataNasc(userDate);
+            user.setCode(code);
             users.add(user);
+            Log.i("UserDAO", user.getName() );
+            Log.i("UserDao", user.getDataNasc() );
         }
         return users;
     }

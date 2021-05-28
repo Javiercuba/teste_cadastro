@@ -23,6 +23,7 @@ public class DbHelper extends SQLiteOpenHelper {
         String sql = "CREATE TABLE IF NOT EXISTS " + TABLE_USERS
                 + " (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 " nome TEXT NOT NULL, " +
+                " code TEXT NOT NULL, " +
                 " date TEXT NOT NULL );" ;
 
         try {

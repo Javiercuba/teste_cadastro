@@ -7,6 +7,7 @@ public class User implements Serializable {
     private Long id;
     private String name;
     private String dataNasc;
+    private String code;
 
     public Long getId() {
         return id;
@@ -20,7 +21,7 @@ public class User implements Serializable {
         return name;
     }
 
-    public void setName(String nomeTarefa) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -31,4 +32,13 @@ public class User implements Serializable {
     public void setDataNasc(String dataNasc) {
         this.dataNasc = dataNasc;
     }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
 }

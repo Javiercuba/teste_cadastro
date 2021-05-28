@@ -25,7 +25,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder>{
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View itemList = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_user_adapter, parent, false);
+                .inflate(R.layout.item_user_adapter, parent, false);
 
         return new MyViewHolder(itemList);
     }
@@ -35,7 +35,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder>{
 
         User user = userList.get(position);
         holder.user.setText( user.getName() );
-
+        holder.date.setText(user.getDataNasc());
+        holder.cod.setText(user.getCode());
     }
     @Override
     public int getItemCount() {
@@ -44,13 +45,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.MyViewHolder>{
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView user;
+        TextView user,date,cod;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            user = itemView.findViewById(R.id.textTarefa);
-
+            user = itemView.findViewById(R.id.name);
+            date = itemView.findViewById(R.id.date);
+            cod = itemView.findViewById(R.id.cod);
         }
     }
 
