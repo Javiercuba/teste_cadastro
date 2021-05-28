@@ -24,6 +24,7 @@ public class DbHelper extends SQLiteOpenHelper {
                 + " (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 " nome TEXT NOT NULL, " +
                 " code TEXT NOT NULL, " +
+                " map  TEXT , " +
                 " date TEXT NOT NULL );" ;
 
         try {

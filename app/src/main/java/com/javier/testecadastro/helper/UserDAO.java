@@ -28,6 +28,7 @@ public class UserDAO implements IUserDAO {
         cv.put("nome", user.getName() );
         cv.put("date",user.getDataNasc() );
         cv.put("code", user.getCode());
+       // cv.put("map", user.getMap());
         try {
             write.insert(DbHelper.TABLE_USERS, null, cv );
             Log.i("INFO", "Usuario salvo com sucesso!");
@@ -46,6 +47,7 @@ public class UserDAO implements IUserDAO {
         cv.put("nome", user.getName() );
         cv.put("date", user.getDataNasc() );
         cv.put("code", user.getCode());
+        //cv.put("map", user.getMap());
         try {
             String[] args = {user.getId().toString()};
             write.update(DbHelper.TABLE_USERS, cv, "id=?", args );
@@ -89,14 +91,18 @@ public class UserDAO implements IUserDAO {
             String name = c.getString(c.getColumnIndex("nome"));
             String userDate = c.getString(c.getColumnIndex("date"));
             String code = c.getString(c.getColumnIndex("code"));
+            // String map = c.getString(c.getColumnIndex("map"));
 
             user.setId(id);
             user.setName(name);
             user.setDataNasc(userDate);
             user.setCode(code);
+            //user.setmap(map);
+
             users.add(user);
             Log.i("UserDAO", user.getName() );
             Log.i("UserDao", user.getDataNasc() );
+            //Log.i("UserDao",user.getMap());
         }
         return users;
     }
