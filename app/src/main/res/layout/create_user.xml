@@ -43,15 +43,17 @@
         android:hint="Nome"
         app:layout_constraintTop_toBottomOf="@+id/image" />
 
-    <EditText
+    <com.santalu.maskedittext.MaskEditText
         android:id="@+id/date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="27dp"
         android:gravity="center"
+        app:met_mask="##/##/####"
         android:hint="Data de nascimento"
-
+        android:inputType="date"
         app:layout_constraintTop_toBottomOf="@+id/name" />
+
 
     <EditText
         android:id="@+id/cod"

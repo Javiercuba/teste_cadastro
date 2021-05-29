@@ -8,6 +8,7 @@ public class User implements Serializable {
     private String name;
     private String dataNasc;
     private String code;
+    private String map;
 
     public Long getId() {
         return id;
@@ -39,6 +40,14 @@ public class User implements Serializable {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getMap() {
+        return map;
+    }
+
+    public void setmap(String map) {
+        this.map = map;
     }
 
 }
