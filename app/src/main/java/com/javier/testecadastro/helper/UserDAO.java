@@ -91,18 +91,15 @@ public class UserDAO implements IUserDAO {
             String name = c.getString(c.getColumnIndex("nome"));
             String userDate = c.getString(c.getColumnIndex("date"));
             String code = c.getString(c.getColumnIndex("code"));
-            // String map = c.getString(c.getColumnIndex("map"));
 
             user.setId(id);
             user.setName(name);
             user.setDataNasc(userDate);
             user.setCode(code);
-            //user.setmap(map);
 
             users.add(user);
             Log.i("UserDAO", user.getName() );
             Log.i("UserDao", user.getDataNasc() );
-            //Log.i("UserDao",user.getMap());
         }
         return users;
     }

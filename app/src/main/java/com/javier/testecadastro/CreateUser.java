@@ -21,15 +21,20 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.javier.testecadastro.helper.UserDAO;
 import com.javier.testecadastro.model.User;
+import com.santalu.maskedittext.MaskEditText;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 
 public class CreateUser extends AppCompatActivity {
     private User userData;
     private ImageView imageView;
-    private EditText name_text, date_text, cod_text;
+    private EditText name_text, cod_text;
+    private MaskEditText date_text;
     private User user = new User();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +48,8 @@ public class CreateUser extends AppCompatActivity {
          Button save = findViewById(R.id.save);
          imageView = findViewById(R.id.image);
 
+
+            //Abre a galeria do dispositivo
          foto.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
@@ -58,7 +65,6 @@ public class CreateUser extends AppCompatActivity {
             name_text.setText( userData.getName() );
             date_text.setText( userData.getDataNasc() );
             cod_text.setText(userData.getCode());
-            imageView.setImageBitmap(StringToBitMap(userData.getMap()));
         }
 
         save.setOnClickListener(new View.OnClickListener() {
@@ -70,10 +76,10 @@ public class CreateUser extends AppCompatActivity {
                 String dateUser = date_text.getText().toString();
                 String codUser = cod_text.getText().toString();
 
-                if( !nameUser.isEmpty()){
+                if( !nameUser.isEmpty() && !dateUser.isEmpty() && !codUser.isEmpty()){
 
                     user.setName( nameUser );
-                    user.setDataNasc(dateUser);
+                    user.setDataNasc( dateUser);
                     user.setCode(codUser);
 
                     if ( userDAO.salvar( user ) ){
@@ -86,6 +92,10 @@ public class CreateUser extends AppCompatActivity {
                                 "Erro ao salvar usuario!",
                                 Toast.LENGTH_SHORT).show();
                     }
+                }else{
+                    Toast.makeText(getApplicationContext(),
+                            "Compete todos os campos",
+                            Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -103,35 +113,9 @@ public class CreateUser extends AppCompatActivity {
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 image.compress(Bitmap.CompressFormat.JPEG,30,stream);
                 imageView.setImageBitmap(image);
-
-
-                Log.i("UserDAO", BitMapToString(image));
-               // user.setmap(BitMapToString(image));
-
-
             }catch (IOException e){
                 e.printStackTrace();
             }
         }
-
-
     }
-    public Bitmap StringToBitMap(String encodedString){
-        try {
-            byte [] encodeByte=Base64.decode(encodedString, Base64.DEFAULT);
-            Bitmap bitmap=BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-            return bitmap;
-        } catch(Exception e) {
-            e.getMessage();
-            return null;
-        }
-    }
-    public String BitMapToString(Bitmap bitmap){
-        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
-        byte [] b=baos.toByteArray();
-        String temp=Base64.encodeToString(b, Base64.DEFAULT);
-        return temp;
-    }
-
 }

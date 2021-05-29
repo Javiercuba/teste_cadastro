@@ -1,5 +1,4 @@
 package com.javier.testecadastro;
-
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -8,7 +7,6 @@ import android.os.Handler;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
